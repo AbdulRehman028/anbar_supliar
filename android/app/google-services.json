@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "607529736390",
+    "project_id": "anbar-7232b",
+    "storage_bucket": "anbar-7232b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607529736390:android:7c7c2976c9f0e1427f1fc7",
+        "android_client_info": {
+          "package_name": "com.example.anbar_supliar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuvE25PBxH9gz43v9Wy5UmQijk_mNu3pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607529736390:android:df1d0c5bc200dfbe7f1fc7",
+        "android_client_info": {
+          "package_name": "com.example.supervisior_anbar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuvE25PBxH9gz43v9Wy5UmQijk_mNu3pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:607529736390:android:b8351dcc2cbbb9f87f1fc7",
+        "android_client_info": {
+          "package_name": "com.example.untitled15"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuvE25PBxH9gz43v9Wy5UmQijk_mNu3pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
