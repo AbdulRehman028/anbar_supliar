@@ -2,6 +2,10 @@ import 'package:anbar_supliar/consts/consts.dart';
 import 'package:flutter/material.dart';
 
 class PasswordField extends StatefulWidget {
+  final TextEditingController passwordController;
+
+  const PasswordField({super.key, required this.passwordController});
+
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
 }
@@ -14,12 +18,13 @@ class _PasswordFieldState extends State<PasswordField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: TextFormField(
+        controller: widget.passwordController,
         obscureText: _isObscured, // Controls visibility of the password
         style: const TextStyle(color: primaryColor), // Text color
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.transparent,
-          labelText: password,
+          labelText: 'Password',
           labelStyle: const TextStyle(color: primaryColor),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
@@ -49,12 +54,12 @@ class _PasswordFieldState extends State<PasswordField> {
           ),
         ),
         cursorColor: blackColor,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return pleaseEnterYourPassword;
-              }
-              return null;
-            },
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter your password';
+          }
+          return null;
+        },
       ),
     );
   }

@@ -2,8 +2,8 @@ import 'package:anbar_supliar/consts/consts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../common_widgets/navigation_menue.dart';
 import '../../common_widgets/our_button.dart';
-import '../Home_screen/home_screen.dart';
 import 'components/email_field/email_field.dart';
 import 'components/Password_field/password_field.dart';
 
@@ -28,21 +28,30 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void login() {
-    _auth
-        .signInWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text.toString())
-        .then((value) {
-      Get.to(const HomeScreen());
-    }).onError((error, stackTrace) {
+  Future<void> login() async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      Get.to(const NavigationMenu());
+    } on FirebaseAuthException catch (e) {
+      print(e);
       Get.snackbar(
-        error.toString(),
-        stackTrace.toString(),
+        'Error',
+        e.message ?? 'An unknown error occurred',
         backgroundColor: primaryColor,
         colorText: whiteColor,
       );
-    });
+    } catch (e) {
+      print(e);
+      Get.snackbar(
+        'Error',
+        'An unknown error occurred',
+        backgroundColor: primaryColor,
+        colorText: whiteColor,
+      );
+    }
   }
 
   @override
@@ -67,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     EmailField(emailController: emailController),
                     const SizedBox(height: 20),
-                    PasswordField(),
+                    PasswordField(passwordController: passwordController),
                   ],
                 ),
               ),
@@ -78,13 +87,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ourButton(
                   onPress: () {
                     if (_formkey.currentState!.validate()) {
-                      // Get.to(()=> const LoginScreen());
                       login();
                     }
                   },
                   color: primaryColor,
                   textColor: whiteColor,
-                  title: Login,
+                  title: 'Login',
                 ),
               ),
             ],

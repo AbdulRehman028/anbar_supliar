@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Orders {
+  final String id; // Document ID
   final int number;
   final String title;
   final String location;
@@ -9,9 +12,22 @@ class Orders {
   final int price;
   final String notes;
 
-  Orders({required this.title, required this.location, required this.quantity, required this.number, required this.clientName, required this.contactNumber, required this.date, required this.price, required this.notes});
-  factory Orders.fromFirestore(Map<String, dynamic> json, String documentId) {
+  Orders(
+      {required this.title,
+      required this.location,
+      required this.quantity,
+      required this.number,
+      required this.clientName,
+      required this.contactNumber,
+      required this.date,
+      required this.price,
+      required this.notes,
+      required this.id});
+
+  factory Orders.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
     return Orders(
+      id: doc.id,
       number: json['number'] as int,
       title: json['title'] as String,
       location: json['location'] as String,
@@ -30,6 +46,11 @@ class Orders {
       'title': title,
       'location': location,
       'quantity': quantity,
+      'clientName': clientName,
+      'contactNumber': contactNumber,
+      'date': date,
+      'price': price,
+      'notes': notes,
     };
   }
 }
