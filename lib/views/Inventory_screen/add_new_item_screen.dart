@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:anbar_supliar/consts/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -97,8 +98,10 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
-        title: Text(isEditing ? 'Edit Product' : 'Add New Product'),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text(isEditing ? 'Edit Product' : 'Add New Product', style: const TextStyle(color: Colors.white)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
