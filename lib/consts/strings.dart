@@ -70,7 +70,8 @@ const pleaseEnterYourPassword = "Please enter your password";
 
 const enterAValidEmailAddress = "Enter a valid email address";
 const active = "Active";
-const myStatus = "My Status", completedOrder = "Completed Order";
+const myStatus = "My Status",
+    completedOrder = "Completed Order";
 const myInventory = "Inventory";
 const newOrders = "New Orders";
 
@@ -91,3 +92,10 @@ const orderDetails = "Order Details",
     price = "Price",
     clientNotes = "Client Notes",
     acceptOrder = "Accept Order";
+
+const addProductImage = "Add Product Image",
+    addNewProduct = "Add New Product",
+    editProduct = "Edit Product",
+    productName = "Product Name",
+    writeProductName = "Write  Product Name",
+    productDiscription = "Product Discription";

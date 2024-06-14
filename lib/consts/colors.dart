@@ -24,3 +24,5 @@ const lightBlueColor = Color(0xff08B4EB);
 const lightPurpalColor = Color(0xffcabdff);
 const yellowColor = Color(0xffFFD700);
 const darkGreyColor = Color(0xff6C6A6A);
+const lightHintGreyColor = Color(0xff848586);
+const lightBlackColor = Color(0xffDDDDDD);

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:anbar_supliar/consts/colors.dart';
+import 'package:anbar_supliar/consts/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -72,9 +72,14 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
       );
 
       if (isEditing) {
-        await FirebaseFirestore.instance.collection('inventory').doc(widget.item!.id).update(newItem.toJson());
+        await FirebaseFirestore.instance
+            .collection('inventory')
+            .doc(widget.item!.id)
+            .update(newItem.toJson());
       } else {
-        await FirebaseFirestore.instance.collection('inventory').add(newItem.toJson());
+        await FirebaseFirestore.instance
+            .collection('inventory')
+            .add(newItem.toJson());
       }
 
       Navigator.pop(context);
@@ -100,8 +105,10 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
+        backgroundColor: primaryColor,
         iconTheme: const IconThemeData(color: Colors.white),
-        title: Text(isEditing ? 'Edit Product' : 'Add New Product', style: const TextStyle(color: Colors.white)),
+        title: Text(isEditing ? editProduct : addNewProduct,
+            style: const TextStyle(color: whiteColor)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -109,9 +116,13 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Add Product Image',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              const Padding(
+                padding: EdgeInsets.only(top: 24, left: 20),
+                child: Text(
+                  addProductImage,
+                  style: TextStyle(
+                      fontSize: 20, fontFamily: semibold, color: primaryColor),
+                ),
               ),
               const SizedBox(height: 10),
               Row(
@@ -125,52 +136,142 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const Icon(Icons.add, size: 50, color: Colors.grey),
+                      child:
+                          const Icon(Icons.add, size: 50, color: Colors.grey),
                     ),
                   ),
                   const SizedBox(width: 10),
                   _image != null
-                      ? Container(
-                    height: 100,
-                    width: 100,
-                    child: Image.file(_image!, fit: BoxFit.cover),
-                  )
+                      ? SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image.file(_image!, fit: BoxFit.cover),
+                        )
                       : widget.item != null && isBase64(widget.item!.imageUrl)
-                      ? Container(
-                    height: 100,
-                    width: 100,
-                    child: Image.memory(base64Decode(widget.item!.imageUrl), fit: BoxFit.cover),
-                  )
-                      : Container(),
+                          ? SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Image.memory(
+                                  base64Decode(widget.item!.imageUrl),
+                                  fit: BoxFit.cover),
+                            )
+                          : Container(),
                 ],
               ),
               const SizedBox(height: 20),
-              TextField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: 'Product Name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                controller: _descriptionController,
-                decoration: InputDecoration(
-                  labelText: 'Product Description',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                      width: 346,
+                      height: 323,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 14.0,left: 15.0),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                productName,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: semibold,
+                                    color: primaryColor),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 319,
+                            height: 39,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: TextField(
+                                controller: _nameController,
+                                decoration: InputDecoration(
+                                  hintText: 'Write  Product Name',
+                                  hintStyle : const TextStyle(
+                                    fontSize: 11,
+                                    fontFamily: semibold,
+                                    color: lightHintGreyColor),
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(color: lightBlackColor),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: const BorderSide(color: primaryColor),),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 14.0,left: 15.0),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                productDiscription,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: semibold,
+                                    color: primaryColor),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          SizedBox(
+                            height: 39,
+                            width: 319,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              child: TextField(
+                                controller: _descriptionController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(color: lightBlackColor),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: const BorderSide(color: primaryColor),),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),),),
               const SizedBox(height: 20),
               Center(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await saveItem();
-                  },
-                  child: Text(isEditing ? 'Save Changes' : 'Submit Item'),
+                child: SizedBox(
+                  height: 36,
+                  width: 202,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      textStyle: const TextStyle(fontSize: 20, fontFamily: mediam, color: whiteColor),
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                    onPressed: () async {
+                      await saveItem();
+                    },
+                    child: Text(isEditing ? 'Save Changes' : 'Submit Item'),
+                  ),
                 ),
               ),
             ],
@@ -180,5 +281,3 @@ class _AddNewItemScreenState extends State<AddNewItemScreen> {
     );
   }
 }
-
-
