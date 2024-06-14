@@ -97,5 +97,7 @@ const addProductImage = "Add Product Image",
     addNewProduct = "Add New Product",
     editProduct = "Edit Product",
     productName = "Product Name",
+    productPrice = "Product Price",
+    enterProductPrice = "Enter Product Price",
     writeProductName = "Write  Product Name",
     productDiscription = "Product Discription";

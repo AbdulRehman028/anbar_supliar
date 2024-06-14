@@ -1,6 +1,6 @@
 
 const imgLogo = "assets/images/logo.png";
-const imgLogo2 = "assets/images/logo2.png";
+const imgLogo2 = "assets/images/imganbarlogo.png";
 const imgtechnician = "assets/images/technician.png";
 const imgAnbarTitleCl = "assets/images/AnbarTitle.png";
 const imgVerify = "assets/images/verification.png";

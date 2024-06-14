@@ -4,13 +4,15 @@ class InventoryItem {
   final String id;
   final String title;
   final String description;
-  final String imageUrl;
+  final String imageUrl; // This will be a base64 encoded string
+  final double price; // Add price field
 
   InventoryItem({
     required this.id,
     required this.title,
     required this.description,
     required this.imageUrl,
+    required this.price,
   });
 
   factory InventoryItem.fromFirestore(DocumentSnapshot doc) {
@@ -20,6 +22,7 @@ class InventoryItem {
       title: data['title'] ?? '',
       description: data['description'] ?? '',
       imageUrl: data['imageUrl'] ?? '',
+      price: data['price'] != null ? (data['price'] as num).toDouble() : 0.0, // Handle price field
     );
   }
 
@@ -28,6 +31,7 @@ class InventoryItem {
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
+      'price': price, // Handle price field
     };
   }
 }
