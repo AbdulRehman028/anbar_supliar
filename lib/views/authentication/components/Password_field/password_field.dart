@@ -27,16 +27,16 @@ class _PasswordFieldState extends State<PasswordField> {
           labelText: 'Password',
           labelStyle: const TextStyle(color: primaryColor),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(color: primaryColor),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
                 color: primaryColor),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             borderSide:
             const BorderSide(color: primaryColor),
           ),

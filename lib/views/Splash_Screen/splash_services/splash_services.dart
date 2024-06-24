@@ -9,14 +9,14 @@ class SplashServices {
 
     if (user != null) {
       Future.delayed(const Duration(seconds: 3), () {
-        Get.to(() => const NavigationMenu());
+        Get.off(() => const NavigationMenu());
         // Get.off(const HomeScreen());
       });
     } else {
       Future.delayed(
         const Duration(seconds: 3),
         () {
-          Get.to(() => const LandingScreen());
+          Get.off(() => const LandingScreen());
         },
       );
     }

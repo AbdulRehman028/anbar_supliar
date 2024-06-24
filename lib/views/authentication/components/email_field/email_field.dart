@@ -25,8 +25,8 @@ class EmailField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(color: primaryColor),
           ),
-          enabledBorder: const OutlineInputBorder(
-            // borderRadius: BorderRadius.circular(16),
+          enabledBorder:  OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(color: primaryColor),
           ),
           focusedBorder: OutlineInputBorder(
