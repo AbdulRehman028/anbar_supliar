@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class InventoryItem {
-  final String id;
-  final String title;
-  final String description;
-  final String imageUrl; // This will be a base64 encoded string
-  final double price; // Add price field
+  String id;
+  String title;
+  String description;
+  String imageUrl;
+  double price;
 
   InventoryItem({
     required this.id,
@@ -22,7 +22,7 @@ class InventoryItem {
       title: data['title'] ?? '',
       description: data['description'] ?? '',
       imageUrl: data['imageUrl'] ?? '',
-      price: data['price'] != null ? (data['price'] as num).toDouble() : 0.0, // Handle price field
+      price: (data['price'] ?? 0).toDouble(),
     );
   }
 
@@ -31,7 +31,7 @@ class InventoryItem {
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
-      'price': price, // Handle price field
+      'price': price,
     };
   }
 }
